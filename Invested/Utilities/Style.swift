@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Utilities {
+class Style {
     
     static func styleTextField(_ textfield:UITextField) {
         

@@ -26,9 +26,9 @@ class LoginViewController: UIViewController {
         errorLabel.alpha = 0
         
         // add styles to elements
-        Utilities.styleTextField(firstNameTextField)
-        Utilities.styleTextField(lastNameTextField)
-        Utilities.styleFilledButton(loginButton)
+        Style.styleTextField(firstNameTextField)
+        Style.styleTextField(lastNameTextField)
+        Style.styleFilledButton(loginButton)
     }
     
 
