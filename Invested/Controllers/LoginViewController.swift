@@ -9,10 +9,26 @@ import UIKit
 
 class LoginViewController: UIViewController {
 
+    @IBOutlet weak var firstNameTextField: UITextField!
+    @IBOutlet weak var lastNameTextField: UITextField!
+    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var errorLabel: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        setUpElements()
         // Do any additional setup after loading the view.
+    }
+    
+    func setUpElements() {
+        // hide error message
+        errorLabel.alpha = 0
+        
+        // add styles to elements
+        Utilities.styleTextField(firstNameTextField)
+        Utilities.styleTextField(lastNameTextField)
+        Utilities.styleFilledButton(loginButton)
     }
     
 
@@ -26,4 +42,6 @@ class LoginViewController: UIViewController {
     }
     */
 
+    @IBAction func loginButtonClicked(_ sender: Any) {
+    }
 }
