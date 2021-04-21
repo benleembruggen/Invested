@@ -31,27 +31,43 @@ class LoginViewController: UIViewController {
         Style.styleTextField(passwordTextField)
         Style.styleFilledButton(loginButton)
     }
+    
+    // check the fields and validate the data is correct
+    // if no error return nil, else return error message
+    func validateFields() -> String? {
+        if emailTextField.text == "" || passwordTextField.text == "" {
+            return "Please fill in all fields"
+        }
+        return nil
+    }
+    
+    func showError(_ message: String) {
+        errorLabel.text = message
+        errorLabel.alpha = 1
+    }
 
     @IBAction func loginButtonClicked(_ sender: Any) {
         // validate text fields
+        let error = validateFields()
         
-        
-        // sign in the user
-        Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
-            
-            if error != nil {
-                // couldn't sign in
-                self.errorLabel.text = error!.localizedDescription
-                self.errorLabel.alpha = 1
-            }
-            else {
-                // user can sign in
-                let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        if error != nil {
+            showError(error!)
+        } else {
+            // sign in the user
+            Auth.auth().signIn(withEmail: emailTextField.text!, password: passwordTextField.text!) { (result, error) in
                 
-                self.view.window?.rootViewController = destination
-                self.view.window?.makeKeyAndVisible()
+                if error != nil {
+                    self.showError("Error when signing in the user")
+                }
+                else {
+                    // user can sign in
+                    let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                    
+                    self.view.window?.rootViewController = destination
+                    self.view.window?.makeKeyAndVisible()
+                }
+                
             }
-            
         }
     }
 }
