@@ -23,6 +23,7 @@
 		A16E38D4262FF67800B5F82D /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = A16E38D3262FF67800B5F82D /* FirebaseFirestore */; };
 		A16E38DE2630025700B5F82D /* Validation.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E38DD2630025700B5F82D /* Validation.swift */; };
 		A16E38E2263004B600B5F82D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = A16E38E1263004B600B5F82D /* Constants.swift */; };
+		A1A9B8002636B50D00592BDF /* HomeTabBarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1A9B7FF2636B50D00592BDF /* HomeTabBarViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -41,6 +42,7 @@
 		A16E38CB262FF4B800B5F82D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		A16E38DD2630025700B5F82D /* Validation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Validation.swift; path = Invested/Utilities/Validation.swift; sourceTree = SOURCE_ROOT; };
 		A16E38E1263004B600B5F82D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		A1A9B7FF2636B50D00592BDF /* HomeTabBarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = HomeTabBarViewController.swift; path = Invested/Controllers/HomeTabBarViewController.swift; sourceTree = SOURCE_ROOT; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -90,6 +92,7 @@
 		A1569D5D262FE69000993B9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A1A9B7FF2636B50D00592BDF /* HomeTabBarViewController.swift */,
 				A1569D43262FE47D00993B9C /* ViewController.swift */,
 				A1569D54262FE67400993B9C /* SignUpViewController.swift */,
 				A1569D5A262FE68600993B9C /* HomeViewController.swift */,
@@ -110,8 +113,8 @@
 		A15E8CB3262FEDC9002DC5F0 /* Storyboards */ = {
 			isa = PBXGroup;
 			children = (
-				A1569D4A262FE48000993B9C /* LaunchScreen.storyboard */,
 				A1569D45262FE47D00993B9C /* Main.storyboard */,
+				A1569D4A262FE48000993B9C /* LaunchScreen.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -214,6 +217,7 @@
 				A16E38DE2630025700B5F82D /* Validation.swift in Sources */,
 				A1569D5B262FE68600993B9C /* HomeViewController.swift in Sources */,
 				A16E38E2263004B600B5F82D /* Constants.swift in Sources */,
+				A1A9B8002636B50D00592BDF /* HomeTabBarViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
