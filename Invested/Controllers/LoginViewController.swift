@@ -61,7 +61,7 @@ class LoginViewController: UIViewController {
                 }
                 else {
                     // user can sign in
-                    let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+                    let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeTabBarViewController
                     
                     self.view.window?.rootViewController = destination
                     self.view.window?.makeKeyAndVisible()

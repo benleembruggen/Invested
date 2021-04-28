@@ -70,7 +70,7 @@ class SignUpViewController: UIViewController {
     }
     
     func transitionToHome() {
-        let destination = storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeViewController
+        let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeTabBarViewController
         
         // overwrite root view controller
         view.window?.rootViewController = destination
