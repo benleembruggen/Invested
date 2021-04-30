@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Firebase
+import FirebaseAuth
+import FirebaseFirestore
 
 class DashboardTableViewController: UITableViewController {
 
@@ -14,20 +17,41 @@ class DashboardTableViewController: UITableViewController {
     let CELL_GRAPH = "graphCell"
     let CELL_STOCK = "stockCell"
     
-    var stockArray = ["APPL", "TSLA", "GME"]
+    var stockArray: [String] = []
+    
+    // store a refrence to the users document in firebase
+    let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         // Uncomment the following line to preserve selection between presentations
         // self.clearsSelectionOnViewWillAppear = false
 
         // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
         // self.navigationItem.rightBarButtonItem = self.editButtonItem
     }
+    
+    
+    // on view appear get the current users positions and store in the stockArray
+    override func viewWillAppear(_ animated: Bool) {
+        // get the document
+        docRef.getDocument { (document, error) in
+            // check for error
+            if let error = error {
+                print("Error reteriving user data \(error)")
+            } else {
+                guard let doc = document else {return}
+                // get the positions data and set to the array
+                let data = doc.data()
+                let positions = data!["positions"] as? [String]
+                self.stockArray = positions ?? []
+            }
+            self.tableView.reloadData()
+        }
+    }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 2
     }
@@ -83,9 +107,9 @@ class DashboardTableViewController: UITableViewController {
     // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
+            // Delete the row from the table and update the firebase document
             stockArray.remove(at: indexPath.row)
+            docRef.setData(["positions": stockArray])
             tableView.reloadSections([SECTION_STOCKS], with: .automatic)
         }    
     }

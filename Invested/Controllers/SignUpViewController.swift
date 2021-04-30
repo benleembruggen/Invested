@@ -91,9 +91,9 @@ class SignUpViewController: UIViewController {
                 if error != nil {
                     self.showError("Error creating user")
                 } else {
-                    // user was created successfully, now store first and last name
+                    // user was created successfully, now store first and last name and initialise positions array
                     let db = Firestore.firestore()
-                    db.collection("users").addDocument(data: ["firstName": self.firstNameTextField.text!, "lastName": self.lastNameTextField.text!, "uid": authResult!.user.uid]) { (error) in
+                    db.collection("users").document(authResult!.user.uid).setData([ "firstName": self.firstNameTextField.text!, "lastName": self.lastNameTextField.text!, "uid": authResult!.user.uid, "positions":[],]) { (error) in
                         if error != nil {
                             // error adding data to db
                             self.showError("User data could not be added to database")
