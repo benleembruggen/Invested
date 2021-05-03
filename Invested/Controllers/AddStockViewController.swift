@@ -30,17 +30,47 @@ class AddStockViewController: UIViewController {
     }
     
     @IBAction func addButtonClick(_ sender: Any) {
-        // TODO add further validation to ensure that the stock is an actual position
-        
-        guard stockTextField.text != nil else {
-            print("error with input")
+        guard stockTextField.text != "" else {
+            displayMessage(title: "No stock entered", message: "Please enter a stock symbol to add a stock")
             return
         }
-        docRef.updateData([
-            "positions": FieldValue.arrayUnion([stockTextField.text!])
-        ])
         
-        dismiss(animated: true, completion: nil)
+        // check that the stock is valid by calling the API
+        guard let url = URL(string: "https://cloud.iexapis.com/stable/stock/market/batch") else {
+            print("URL not valid")
+            return
+        }
+        
+        // add query params to the API string
+        let queryItems = [URLQueryItem(name: "symbols", value: stockTextField.text),
+                          URLQueryItem(name: "types", value: "quote"),
+                          URLQueryItem(name: "token", value: Constants.API.APIKey)]
+        let newUrl = url.appending(queryItems)!
+        
+        // make the request to the API and sotre data
+        let task = URLSession.shared.dataTask(with: newUrl) { data, response, error in
+            if let error = error {
+                print("The inputed stock is not valid \(error)")
+            }
+            let httpResponse = response as! HTTPURLResponse
+            
+            // check if the stock entered is valid
+            if httpResponse.statusCode == 404 {
+                DispatchQueue.main.async {
+                    self.displayMessage(title: "Invalid stock", message: "The stock that you have eneted is not a valid symbol")
+                }
+            } else if data != nil {
+                // add the new symbol to the users positoins in firebase
+                DispatchQueue.main.async {
+                    self.docRef.updateData([
+                        "positions": FieldValue.arrayUnion([self.stockTextField.text!])
+                    ])
+                    self.dismiss(animated: true, completion: nil)
+                }
+                
+            }
+        }
+        task.resume()
     }
     
     // calls this function when the tap is recognized.
@@ -48,15 +78,4 @@ class AddStockViewController: UIViewController {
         // causes the view (or one of its embedded text fields) to resign the first responder status.
         view.endEditing(true)
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
