@@ -29,7 +29,7 @@ class DashboardTableViewController: UITableViewController {
     let CELL_STOCK = "stockCell"
     
     var stockArray: [String] = []
-    var stockDataArray: [(String, Double)] = []
+    var stockDataArray: [(String, Int)] = []
     var allStockData: [String: AllStockData] = [:]
     
     // store a refrence to the users document in firebase
@@ -91,9 +91,10 @@ class DashboardTableViewController: UITableViewController {
         task.resume()
         
         // get data from the request and put into the stockDataArray
+        stockDataArray = []
         for stock in stockArray {
             guard let currentStock = allStockData[stock]?.quote else {break}
-            stockDataArray.append((currentStock.companyName, currentStock.ytdChange))
+            stockDataArray.append((currentStock.companyName, Int(currentStock.ytdChange*100)))
         }
         self.tableView.reloadData()
     }
@@ -135,8 +136,23 @@ class DashboardTableViewController: UITableViewController {
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == SECTION_STOCKS {
             // TODO change this for the custom cell
-            let cell = tableView.dequeueReusableCell(withIdentifier: CELL_STOCK, for: indexPath)
-            cell.textLabel?.text = stockDataArray[indexPath.row].0
+            let cell = tableView.dequeueReusableCell(withIdentifier: CELL_STOCK, for: indexPath) as! StockTableViewCell
+            let currentStock = stockDataArray[indexPath.row]
+            
+            cell.nameLabel?.text = currentStock.0
+            cell.priceLabel?.text = "\(currentStock.1.description)%"
+            
+            if (currentStock.1 >= 1) {
+                cell.indicator?.text = "▲"
+                cell.indicator?.textColor = .green
+            } else if (currentStock.1 <= -1) {
+                cell.indicator?.text = "▼"
+                cell.indicator?.textColor = .red
+            } else {
+                cell.indicator?.text = "⬤"
+                
+            }
+            
             return cell
         } else if indexPath.section == SECTION_ADD {
             let addCell = tableView.dequeueReusableCell(withIdentifier: CELL_ADD, for: indexPath)
@@ -163,6 +179,7 @@ class DashboardTableViewController: UITableViewController {
         if editingStyle == .delete {
             // delete the row from the table and update the firebase document
             stockArray.remove(at: indexPath.row)
+            stockDataArray.remove(at: indexPath.row)
             docRef.setData(["positions": stockArray])
             tableView.reloadSections([SECTION_STOCKS], with: .automatic)
         }    

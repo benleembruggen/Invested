@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		A1051FEF263F7D7A002EB203 /* URLExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FEE263F7D79002EB203 /* URLExtention.swift */; };
+		A1051FF1263F8974002EB203 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF0263F8973002EB203 /* StockTableViewCell.swift */; };
 		A1569D40262FE47D00993B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D3F262FE47D00993B9C /* AppDelegate.swift */; };
 		A1569D42262FE47D00993B9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D41262FE47D00993B9C /* SceneDelegate.swift */; };
 		A1569D44262FE47D00993B9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D43262FE47D00993B9C /* ViewController.swift */; };
@@ -34,6 +35,7 @@
 
 /* Begin PBXFileReference section */
 		A1051FEE263F7D79002EB203 /* URLExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLExtention.swift; path = Invested/Utilities/URLExtention.swift; sourceTree = SOURCE_ROOT; };
+		A1051FF0263F8973002EB203 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StockTableViewCell.swift; path = Invested/Storyboards/StockTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A1569D3C262FE47D00993B9C /* Invested.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invested.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1569D3F262FE47D00993B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1569D41262FE47D00993B9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -104,6 +106,7 @@
 		A1569D5D262FE69000993B9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A1051FF0263F8973002EB203 /* StockTableViewCell.swift */,
 				A15DA0B126392E1C00801516 /* NewsTableViewController.swift */,
 				A15DA0B326392E2800801516 /* InsightsTableViewController.swift */,
 				A15DA0B526392E5000801516 /* AnalyseViewController.swift */,
@@ -230,6 +233,7 @@
 				A1569D44262FE47D00993B9C /* ViewController.swift in Sources */,
 				A1569D40262FE47D00993B9C /* AppDelegate.swift in Sources */,
 				A15E8CB6262FEE36002DC5F0 /* Style.swift in Sources */,
+				A1051FF1263F8974002EB203 /* StockTableViewCell.swift in Sources */,
 				A1569D55262FE67400993B9C /* SignUpViewController.swift in Sources */,
 				A1569D58262FE67C00993B9C /* LoginViewController.swift in Sources */,
 				A15DA0B626392E5000801516 /* AnalyseViewController.swift in Sources */,
