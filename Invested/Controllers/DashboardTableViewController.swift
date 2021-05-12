@@ -31,8 +31,9 @@ class DashboardTableViewController: UITableViewController {
     let CELL_STOCK = "stockCell"
     
     var stockArray: [String] = []
-    var stockDataArray: [(String, Int)] = []
     var allStockData: [String: AllStockData] = [:]
+    var stockDataArray: [(String, Int)] = []
+    
     
     // store a refrence to the users document in firebase
     let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
