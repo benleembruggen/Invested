@@ -69,6 +69,7 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 1
     }
     
+    
     func transitionToHome() {
         let destination = self.storyboard?.instantiateViewController(identifier: Constants.Storyboard.homeViewController) as? HomeTabBarViewController
         

@@ -10,6 +10,8 @@
 		A1051FEF263F7D7A002EB203 /* URLExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FEE263F7D79002EB203 /* URLExtention.swift */; };
 		A1051FF1263F8974002EB203 /* StockTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF0263F8973002EB203 /* StockTableViewCell.swift */; };
 		A1051FF3263F9F3D002EB203 /* UIViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF2263F9F3D002EB203 /* UIViewControllerExtention.swift */; };
+		A1051FF6263FA46A002EB203 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A1051FF5263FA46A002EB203 /* Charts */; };
+		A1051FF8263FA52B002EB203 /* TestChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF7263FA52B002EB203 /* TestChartViewController.swift */; };
 		A1569D40262FE47D00993B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D3F262FE47D00993B9C /* AppDelegate.swift */; };
 		A1569D42262FE47D00993B9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D41262FE47D00993B9C /* SceneDelegate.swift */; };
 		A1569D44262FE47D00993B9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D43262FE47D00993B9C /* ViewController.swift */; };
@@ -38,6 +40,7 @@
 		A1051FEE263F7D79002EB203 /* URLExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = URLExtention.swift; path = Invested/Utilities/URLExtention.swift; sourceTree = SOURCE_ROOT; };
 		A1051FF0263F8973002EB203 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StockTableViewCell.swift; path = Invested/Storyboards/StockTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A1051FF2263F9F3D002EB203 /* UIViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtention.swift; path = Invested/Controllers/UIViewControllerExtention.swift; sourceTree = SOURCE_ROOT; };
+		A1051FF7263FA52B002EB203 /* TestChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestChartViewController.swift; path = Invested/Storyboards/TestChartViewController.swift; sourceTree = SOURCE_ROOT; };
 		A1569D3C262FE47D00993B9C /* Invested.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invested.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1569D3F262FE47D00993B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1569D41262FE47D00993B9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -69,6 +72,7 @@
 				A16E38D0262FF67800B5F82D /* FirebaseFirestoreSwift-Beta in Frameworks */,
 				A16E38D2262FF67800B5F82D /* FirebaseAuth in Frameworks */,
 				A16E38D4262FF67800B5F82D /* FirebaseFirestore in Frameworks */,
+				A1051FF6263FA46A002EB203 /* Charts in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -144,6 +148,7 @@
 		A15E8CB4262FEDDC002DC5F0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A1051FF7263FA52B002EB203 /* TestChartViewController.swift */,
 				A1051FF2263F9F3D002EB203 /* UIViewControllerExtention.swift */,
 				A15E8CB5262FEE36002DC5F0 /* Style.swift */,
 				A16E38DD2630025700B5F82D /* Validation.swift */,
@@ -173,6 +178,7 @@
 				A16E38CF262FF67800B5F82D /* FirebaseFirestoreSwift-Beta */,
 				A16E38D1262FF67800B5F82D /* FirebaseAuth */,
 				A16E38D3262FF67800B5F82D /* FirebaseFirestore */,
+				A1051FF5263FA46A002EB203 /* Charts */,
 			);
 			productName = Invested;
 			productReference = A1569D3C262FE47D00993B9C /* Invested.app */;
@@ -203,6 +209,7 @@
 			mainGroup = A1569D33262FE47D00993B9C;
 			packageReferences = (
 				A16E38CE262FF67800B5F82D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				A1051FF4263FA469002EB203 /* XCRemoteSwiftPackageReference "Charts" */,
 			);
 			productRefGroup = A1569D3D262FE47D00993B9C /* Products */;
 			projectDirPath = "";
@@ -235,6 +242,7 @@
 				A15DA0B426392E2900801516 /* InsightsTableViewController.swift in Sources */,
 				A1569D44262FE47D00993B9C /* ViewController.swift in Sources */,
 				A1569D40262FE47D00993B9C /* AppDelegate.swift in Sources */,
+				A1051FF8263FA52B002EB203 /* TestChartViewController.swift in Sources */,
 				A15E8CB6262FEE36002DC5F0 /* Style.swift in Sources */,
 				A1051FF1263F8974002EB203 /* StockTableViewCell.swift in Sources */,
 				A1569D55262FE67400993B9C /* SignUpViewController.swift in Sources */,
@@ -453,6 +461,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		A1051FF4263FA469002EB203 /* XCRemoteSwiftPackageReference "Charts" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/danielgindi/Charts.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.1;
+			};
+		};
 		A16E38CE262FF67800B5F82D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -464,6 +480,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A1051FF5263FA46A002EB203 /* Charts */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A1051FF4263FA469002EB203 /* XCRemoteSwiftPackageReference "Charts" */;
+			productName = Charts;
+		};
 		A16E38CF262FF67800B5F82D /* FirebaseFirestoreSwift-Beta */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = A16E38CE262FF67800B5F82D /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;

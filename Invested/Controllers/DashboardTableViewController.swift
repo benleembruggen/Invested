@@ -6,9 +6,11 @@
 //
 
 import UIKit
+import Charts
 import Firebase
 import FirebaseAuth
 import FirebaseFirestore
+
 
 struct AllStockData: Codable {
     var quote: StockData
