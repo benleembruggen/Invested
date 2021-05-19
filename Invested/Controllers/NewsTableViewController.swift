@@ -34,6 +34,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
         getUserStocks()
     }
     
+    // MARK: - API Methods
     func getUserStocks() {
         // get the document
         docRef.getDocument { (document, error) in
@@ -48,6 +49,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
             }
         }
     }
+    
     
     func callAPIForNews(stockArray: [String]) {
         // generate initial API string

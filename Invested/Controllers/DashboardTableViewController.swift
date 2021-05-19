@@ -31,35 +31,37 @@ class DashboardTableViewController: UITableViewController {
     let CELL_STOCK = "stockCell"
     
     var stockArray: [String] = []
-    var allStockData: [String: AllStockData] = [:]
+//    var allStockData: [String: AllStockData] = [:]
     var stockDataArray: [(String, Int)] = []
-    
     
     // store a refrence to the users document in firebase
     let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
-    
     // on view appear get the current users positions and store in the stockArray
     override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        getUserStocks()
+    }
+    
+    // MARK: - API Methods
+    func getUserStocks() {
         // get the document
         docRef.getDocument { (document, error) in
             // check for error
             if let error = error {
                 print("Error reteriving user data \(error)")
             } else {
-                guard let doc = document else {return}
+                guard let doc = document, let data = doc.data() else {return}
                 // get the positions data and set to the array
-                let data = doc.data()
-                let positions = data!["positions"] as? [String]
-                
-                self.stockArray = positions ?? []
+                let positions = data["positions"] as! [String]
+                self.stockArray = positions
+                self.callAPIForStocks(stockArray: positions)
             }
         }
-        
+    }
+    
+    
+    func callAPIForStocks(stockArray: [String]) {
         // generate initial API string
         guard let url = URL(string: "https://cloud.iexapis.com/stable/stock/market/batch") else {
             print("URL not valid")
@@ -85,21 +87,27 @@ class DashboardTableViewController: UITableViewController {
             } else if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    self.allStockData = try decoder.decode(Dictionary<String, AllStockData>.self, from: data)
+                    let allStockData = try decoder.decode(Dictionary<String, AllStockData>.self, from: data)
+                    self.filterStockData(stockArray: stockArray, allStockData: allStockData)
                 } catch {
                     print("Error parsing JSON data \(error)")
                 }
             }
         }
         task.resume()
-        
+    }
+    
+    
+    func filterStockData(stockArray: [String], allStockData: [String:AllStockData]){
         // get data from the request and put into the stockDataArray
-        stockDataArray = []
+        self.stockDataArray = []
         for stock in stockArray {
             guard let currentStock = allStockData[stock]?.quote else {break}
-            stockDataArray.append((currentStock.companyName, Int(currentStock.ytdChange*100)))
+            self.stockDataArray.append((currentStock.companyName, Int(currentStock.ytdChange*100)))
         }
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
     }
     
     // MARK: - Table view data source
@@ -184,18 +192,7 @@ class DashboardTableViewController: UITableViewController {
             stockDataArray.remove(at: indexPath.row)
             docRef.setData(["positions": stockArray])
             tableView.reloadSections([SECTION_STOCKS], with: .automatic)
+            
         }    
     }
-    
-    
-    /*
-     // MARK: - Navigation
-     
-     // In a storyboard-based application, you will often want to do a little preparation before navigation
-     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-     // Get the new view controller using segue.destination.
-     // Pass the selected object to the new view controller.
-     }
-     */
-    
 }
