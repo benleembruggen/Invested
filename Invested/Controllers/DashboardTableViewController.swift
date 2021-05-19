@@ -138,7 +138,6 @@ class DashboardTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == SECTION_STOCKS {
-            // TODO change this for the custom cell
             let cell = tableView.dequeueReusableCell(withIdentifier: CELL_STOCK, for: indexPath) as! StockTableViewCell
             let currentStock = stockDataArray[indexPath.row]
             

@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SafariServices
 
 
 struct AllNewsData: Codable {
@@ -16,44 +17,39 @@ struct AllNewsData: Codable {
 struct NewsData: Codable {
     var headline: String
     var datetime: Int
-    var summary: String
-    var image: URL
     var url: URL
     
 }
 
-class NewsTableViewController: UITableViewController {
+class NewsTableViewController: UITableViewController, SFSafariViewControllerDelegate {
     
     let NEWS_CELL = "newsCell"
-    
-    var stockArray: [String] = []
-    var allStockNews: [String:AllNewsData] = [:]
     var stockNewsArray: [NewsData] = []
     
     // store a refrence to the users document in firebase
     let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        getUserStocks()
     }
     
-    // on view appear get the current users positions and store in the stockArray
-    override func viewWillAppear(_ animated: Bool) {
+    func getUserStocks() {
         // get the document
         docRef.getDocument { (document, error) in
             // check for error
             if let error = error {
                 print("Error reteriving user data \(error)")
             } else {
-                guard let doc = document else {return}
+                guard let doc = document, let data = doc.data() else {return}
                 // get the positions data and set to the array
-                let data = doc.data()
-                let positions = data!["positions"] as? [String]
-                
-                self.stockArray = positions ?? []
+                let positions = data["positions"] as! [String]
+                self.callAPIForNews(stockArray: positions)
             }
         }
-        
+    }
+    
+    func callAPIForNews(stockArray: [String]) {
         // generate initial API string
         guard let url = URL(string: "https://cloud.iexapis.com/stable/stock/market/batch") else {
             print("URL not valid")
@@ -79,50 +75,63 @@ class NewsTableViewController: UITableViewController {
             } else if let data = data {
                 do {
                     let decoder = JSONDecoder()
-                    self.allStockNews = try decoder.decode(Dictionary<String, AllNewsData>.self, from: data)
+                    let allStockNews = try decoder.decode(Dictionary<String, AllNewsData>.self, from: data)
+                    self.filterNewsData(stockArray: stockArray, allStockNews: allStockNews)
+                   
                 } catch {
                     print("Error parsing JSON data \(error)")
                 }
             }
         }
         task.resume()
-        
+    }
+    
+    
+    func filterNewsData(stockArray: [String], allStockNews: [String:AllNewsData]) {
         // get data from the request and put into the stockNewsArray
-        stockNewsArray = []
+        self.stockNewsArray = []
         for stock in stockArray {
             guard let newsForStock = allStockNews[stock]?.news else {break}
             
             // get the 3 latest articles for the given stock
             for i in 0...2 {
-                stockNewsArray.append(newsForStock[i])
+                self.stockNewsArray.append(newsForStock[i])
             }
         }
         
         // sort stock based off the release time
-        stockNewsArray.sort(by: { $0.datetime > $1.datetime })
+        self.stockNewsArray.sort(by: { $0.datetime > $1.datetime })
         
-        self.tableView.reloadData()
+        DispatchQueue.main.async {
+           
+            self.tableView.reloadData()
+        }
     }
 
     // MARK: - Table view data source
-
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
         return stockNewsArray.count
+    }
+    
+    
+    override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        // if the cell is clicked on it will take the user to the page (displayed inside the app)
+        let vc = SFSafariViewController(url: stockNewsArray[indexPath.row].url)
+        vc.delegate = self
+
+        present(vc, animated: true)
     }
 
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: NEWS_CELL, for: indexPath) as! NewsTableViewCell
         let currentStock = stockNewsArray[indexPath.row]
-        let imageData = try! Data(contentsOf: currentStock.image)
         
-        cell.headlineLabel?.text = currentStock.headline
-        cell.imageRef.image = UIImage(data: imageData)
+        cell.headline?.text = currentStock.headline
         
         return cell
     }
