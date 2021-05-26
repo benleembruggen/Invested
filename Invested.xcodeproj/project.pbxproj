@@ -12,6 +12,9 @@
 		A1051FF3263F9F3D002EB203 /* UIViewControllerExtention.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF2263F9F3D002EB203 /* UIViewControllerExtention.swift */; };
 		A1051FF6263FA46A002EB203 /* Charts in Frameworks */ = {isa = PBXBuildFile; productRef = A1051FF5263FA46A002EB203 /* Charts */; };
 		A1051FF8263FA52B002EB203 /* TestChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1051FF7263FA52B002EB203 /* TestChartViewController.swift */; };
+		A111158B265CEA5B000DC197 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111158A265CEA5B000DC197 /* Post.swift */; };
+		A111158D265CF185000DC197 /* PostTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111158C265CF185000DC197 /* PostTableViewCell.swift */; };
+		A111158F265D02D8000DC197 /* AddPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A111158E265D02D8000DC197 /* AddPostViewController.swift */; };
 		A1569D40262FE47D00993B9C /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D3F262FE47D00993B9C /* AppDelegate.swift */; };
 		A1569D42262FE47D00993B9C /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D41262FE47D00993B9C /* SceneDelegate.swift */; };
 		A1569D44262FE47D00993B9C /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1569D43262FE47D00993B9C /* ViewController.swift */; };
@@ -42,6 +45,9 @@
 		A1051FF0263F8973002EB203 /* StockTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = StockTableViewCell.swift; path = Invested/CustomCells/StockTableViewCell.swift; sourceTree = SOURCE_ROOT; };
 		A1051FF2263F9F3D002EB203 /* UIViewControllerExtention.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = UIViewControllerExtention.swift; path = Invested/Extentions/UIViewControllerExtention.swift; sourceTree = SOURCE_ROOT; };
 		A1051FF7263FA52B002EB203 /* TestChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TestChartViewController.swift; path = Invested/Storyboards/TestChartViewController.swift; sourceTree = SOURCE_ROOT; };
+		A111158A265CEA5B000DC197 /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = Post.swift; path = Invested/Controllers/Post.swift; sourceTree = SOURCE_ROOT; };
+		A111158C265CF185000DC197 /* PostTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTableViewCell.swift; sourceTree = SOURCE_ROOT; };
+		A111158E265D02D8000DC197 /* AddPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AddPostViewController.swift; path = Invested/AddPostViewController.swift; sourceTree = SOURCE_ROOT; };
 		A1569D3C262FE47D00993B9C /* Invested.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Invested.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A1569D3F262FE47D00993B9C /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A1569D41262FE47D00993B9C /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -116,6 +122,7 @@
 		A1569D5D262FE69000993B9C /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				A111158E265D02D8000DC197 /* AddPostViewController.swift */,
 				A15DA0B126392E1C00801516 /* NewsTableViewController.swift */,
 				A15DA0B326392E2800801516 /* InsightsTableViewController.swift */,
 				A15DA0B526392E5000801516 /* AnalyseViewController.swift */,
@@ -151,6 +158,7 @@
 		A15E8CB4262FEDDC002DC5F0 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				A111158A265CEA5B000DC197 /* Post.swift */,
 				A1051FF7263FA52B002EB203 /* TestChartViewController.swift */,
 				A15E8CB5262FEE36002DC5F0 /* Style.swift */,
 				A16E38DD2630025700B5F82D /* Validation.swift */,
@@ -162,6 +170,7 @@
 		A1ED1858264BB48A004F5A34 /* CustomCells */ = {
 			isa = PBXGroup;
 			children = (
+				A111158C265CF185000DC197 /* PostTableViewCell.swift */,
 				A1051FF0263F8973002EB203 /* StockTableViewCell.swift */,
 				A1ED1856264BB47C004F5A34 /* NewsTableViewCell.swift */,
 			);
@@ -269,7 +278,9 @@
 				A1569D58262FE67C00993B9C /* LoginViewController.swift in Sources */,
 				A15DA0B626392E5000801516 /* AnalyseViewController.swift in Sources */,
 				A1569D42262FE47D00993B9C /* SceneDelegate.swift in Sources */,
+				A111158D265CF185000DC197 /* PostTableViewCell.swift in Sources */,
 				A16E38DE2630025700B5F82D /* Validation.swift in Sources */,
+				A111158B265CEA5B000DC197 /* Post.swift in Sources */,
 				A15DA0B026392DE900801516 /* DashboardTableViewController.swift in Sources */,
 				A15DA0B226392E1C00801516 /* NewsTableViewController.swift in Sources */,
 				A1569D5B262FE68600993B9C /* HomeViewController.swift in Sources */,
@@ -277,6 +288,7 @@
 				A1A9B8002636B50D00592BDF /* HomeTabBarViewController.swift in Sources */,
 				A1051FEF263F7D7A002EB203 /* URLExtention.swift in Sources */,
 				A1633FE0263C14C200280DDE /* AddStockViewController.swift in Sources */,
+				A111158F265D02D8000DC197 /* AddPostViewController.swift in Sources */,
 				A1051FF3263F9F3D002EB203 /* UIViewControllerExtention.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

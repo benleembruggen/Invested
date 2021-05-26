@@ -29,8 +29,8 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
     // store a refrence to the users document in firebase
     let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
         getUserStocks()
     }
     
