@@ -31,7 +31,6 @@ class DashboardTableViewController: UITableViewController {
     let CELL_STOCK = "stockCell"
     
     var stockArray: [String] = []
-//    var allStockData: [String: AllStockData] = [:]
     var stockDataArray: [(String, Int)] = []
     
     // store a refrence to the users document in firebase
@@ -40,6 +39,7 @@ class DashboardTableViewController: UITableViewController {
     // on view appear get the current users positions and store in the stockArray
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
+        self.showSpinner()
         getUserStocks()
     }
     
@@ -106,6 +106,7 @@ class DashboardTableViewController: UITableViewController {
             self.stockDataArray.append((currentStock.companyName, Int(currentStock.ytdChange*100)))
         }
         DispatchQueue.main.async {
+            self.removeSpinner()
             self.tableView.reloadData()
         }
     }
@@ -114,6 +115,7 @@ class DashboardTableViewController: UITableViewController {
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 3
     }
+    
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         switch section {
@@ -128,13 +130,12 @@ class DashboardTableViewController: UITableViewController {
         }
     }
     
+    
     override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
         // return the header title for each section in the table view
         var text = ""
         
         switch section {
-        case 0:
-            text = "Dashboard"
         case 1:
             text = "Current Positions"
         default:
@@ -151,6 +152,7 @@ class DashboardTableViewController: UITableViewController {
             
             cell.nameLabel?.text = currentStock.0
             cell.priceLabel?.text = "\(currentStock.1.description)%"
+            cell.selectionStyle = .none
             
             if (currentStock.1 >= 1) {
                 cell.indicator?.text = "▲"
@@ -167,6 +169,7 @@ class DashboardTableViewController: UITableViewController {
         } else if indexPath.section == SECTION_ADD {
             let addCell = tableView.dequeueReusableCell(withIdentifier: CELL_ADD, for: indexPath)
             addCell.textLabel?.text = "Add a stock to portfolio"
+            addCell.selectionStyle = .none
             return addCell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: CELL_STOCK, for: indexPath)
@@ -181,7 +184,6 @@ class DashboardTableViewController: UITableViewController {
         }
         return false
     }
-    
     
     
     // Override to support editing the table view.

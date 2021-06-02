@@ -29,8 +29,9 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
     // store a refrence to the users document in firebase
     let docRef = Firestore.firestore().collection("users").document(Auth.auth().currentUser!.uid)
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(true)
+        self.showSpinner()
         getUserStocks()
     }
     
@@ -105,7 +106,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
         self.stockNewsArray.sort(by: { $0.datetime > $1.datetime })
         
         DispatchQueue.main.async {
-           
+            self.removeSpinner()
             self.tableView.reloadData()
         }
     }
@@ -115,6 +116,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
         return 1
     }
 
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stockNewsArray.count
     }
