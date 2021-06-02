@@ -32,10 +32,10 @@ class AddPostViewController: UIViewController {
     
     @IBAction func addPost(_ sender: Any) {
         if stockField.text == "" {
-            displayMessage(title: "Error creating psot", message: "Please enter a stock symbol")
+            displayMessage(title: "Error creating post", message: "Please enter a stock symbol")
             return
         } else if descriptionField.text == "" {
-            displayMessage(title: "Error creating psot", message: "Please enter a description for your post")
+            displayMessage(title: "Error creating post", message: "Please enter a description for your post")
             return
         }
         
@@ -78,7 +78,7 @@ class AddPostViewController: UIViewController {
                             self.dismiss(animated: true, completion: nil)
                         }
                     }
-                } 
+                }
             }
         }
         task.resume()

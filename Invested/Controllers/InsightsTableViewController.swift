@@ -30,6 +30,7 @@ class InsightsTableViewController: UITableViewController {
                     let post = document.data()
                     self.postArray.append(Post(likes: post["likes"] as! Int, stock: post["stock"] as! String, description: post["description"] as! String, tip: post["tip"] as! String))
                     DispatchQueue.main.async {
+                        self.removeSpinner()
                         self.tableView.reloadData()
                     }
                 }
@@ -39,6 +40,7 @@ class InsightsTableViewController: UITableViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.showSpinner()
         getPosts()
     }
    
@@ -52,8 +54,6 @@ class InsightsTableViewController: UITableViewController {
         var text = ""
         
         switch section {
-        case 0:
-            text = "Insights"
         case 1:
             text = "Recent posts"
         default:
@@ -87,6 +87,8 @@ class InsightsTableViewController: UITableViewController {
                 cell.tipLabel?.textColor = .green
             } else if post.tip == "Sell" {
                 cell.tipLabel?.textColor = .red
+            } else if post.tip == "Hold" {
+                cell.tipLabel?.textColor = .lightGray
             }
             
             return cell

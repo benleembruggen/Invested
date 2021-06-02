@@ -31,6 +31,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(true)
+        self.showSpinner()
         getUserStocks()
     }
     
@@ -105,7 +106,7 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
         self.stockNewsArray.sort(by: { $0.datetime > $1.datetime })
         
         DispatchQueue.main.async {
-           
+            self.removeSpinner()
             self.tableView.reloadData()
         }
     }
@@ -114,20 +115,8 @@ class NewsTableViewController: UITableViewController, SFSafariViewControllerDele
     override func numberOfSections(in tableView: UITableView) -> Int {
         return 1
     }
-    
-    override func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        // return the header title for each section in the table view
-        var text = ""
-        
-        switch section {
-        case 0:
-            text = "Stock News"
-        default:
-            text = ""
-        }
-        return text
-    }
 
+    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stockNewsArray.count
     }
