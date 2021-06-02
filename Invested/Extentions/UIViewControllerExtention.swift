@@ -3,7 +3,7 @@
 //  Invested
 //
 //  Created by Ben Leembruggen on 3/5/21.
-//
+//  Spinner code sourced: https://www.youtube.com/watch?v=twgb5IPwR4I&ab_channel=Accelebrate%2CInc
 
 import Foundation
 import UIKit

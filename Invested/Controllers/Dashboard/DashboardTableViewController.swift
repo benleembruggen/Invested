@@ -152,6 +152,7 @@ class DashboardTableViewController: UITableViewController {
             
             cell.nameLabel?.text = currentStock.0
             cell.priceLabel?.text = "\(currentStock.1.description)%"
+            cell.selectionStyle = .none
             
             if (currentStock.1 >= 1) {
                 cell.indicator?.text = "▲"
@@ -168,6 +169,7 @@ class DashboardTableViewController: UITableViewController {
         } else if indexPath.section == SECTION_ADD {
             let addCell = tableView.dequeueReusableCell(withIdentifier: CELL_ADD, for: indexPath)
             addCell.textLabel?.text = "Add a stock to portfolio"
+            addCell.selectionStyle = .none
             return addCell
         } else {
             return tableView.dequeueReusableCell(withIdentifier: CELL_STOCK, for: indexPath)

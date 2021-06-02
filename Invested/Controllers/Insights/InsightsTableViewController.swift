@@ -82,6 +82,7 @@ class InsightsTableViewController: UITableViewController {
             cell.stockLabel?.text = post.stock
             cell.tipLabel?.text = post.tip
             cell.descriptionLabel?.text = post.description
+            cell.selectionStyle = .none
             
             if post.tip == "Buy" {
                 cell.tipLabel?.textColor = .green
@@ -95,7 +96,24 @@ class InsightsTableViewController: UITableViewController {
         } else {
             let cell = tableView.dequeueReusableCell(withIdentifier: addCell, for: indexPath)
             cell.textLabel?.text = "Add a post"
+            cell.selectionStyle = .none
             return cell
+        }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        // segue controll so show the detail post for the selected post
+        if segue.identifier == "postDetailSegue" {
+            let destination = segue.destination as! PostDetailViewController
+            let cellIndex = tableView.indexPathForSelectedRow?.row
+            
+            // set the information in the detail view
+            if let cellIndex = cellIndex {
+                let post = postArray[cellIndex]
+                destination.titleText = post.stock
+                destination.tipText = post.tip
+                destination.postDescription = post.description
+            }
         }
     }
 }

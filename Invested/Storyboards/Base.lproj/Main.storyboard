@@ -471,6 +471,62 @@
             </objects>
             <point key="canvasLocation" x="4478" y="-1575"/>
         </scene>
+        <!--Post Detail View Controller-->
+        <scene sceneID="iU5-iB-TUp">
+            <objects>
+                <viewController id="RzB-XI-5yS" customClass="PostDetailViewController" customModule="Invested" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Zbq-p4-SFc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="842"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="beG-nf-8jo">
+                                <rect key="frame" x="30" y="30" width="123" height="56"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle0"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="u8Y-7X-EpK">
+                                <rect key="frame" x="360" y="38" width="24" height="21"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleTitle3"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" textAlignment="natural" adjustsFontForContentSizeCategory="YES" translatesAutoresizingMaskIntoConstraints="NO" id="hRs-PC-6OG">
+                                <rect key="frame" x="20" y="111" width="374" height="665"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="665" id="AfU-H5-Enn"/>
+                                    <constraint firstAttribute="width" constant="374" id="fc1-47-c7u"/>
+                                </constraints>
+                                <string key="text">Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Nam liber te conscient to factor tum poen legum odioque civiuda.</string>
+                                <color key="textColor" systemColor="labelColor"/>
+                                <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="scC-qy-ITP"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="scC-qy-ITP" firstAttribute="trailing" secondItem="hRs-PC-6OG" secondAttribute="trailing" constant="20" id="IZD-gA-0pH"/>
+                            <constraint firstItem="scC-qy-ITP" firstAttribute="trailing" secondItem="u8Y-7X-EpK" secondAttribute="trailing" constant="30" id="QqX-uP-5Il"/>
+                            <constraint firstItem="u8Y-7X-EpK" firstAttribute="top" secondItem="scC-qy-ITP" secondAttribute="top" constant="38" id="RkJ-ZU-9OF"/>
+                            <constraint firstItem="beG-nf-8jo" firstAttribute="leading" secondItem="scC-qy-ITP" secondAttribute="leading" constant="30" id="Tgw-TP-fZL"/>
+                            <constraint firstItem="scC-qy-ITP" firstAttribute="bottom" secondItem="hRs-PC-6OG" secondAttribute="bottom" constant="32" id="aGW-JB-VI8"/>
+                            <constraint firstItem="hRs-PC-6OG" firstAttribute="top" secondItem="beG-nf-8jo" secondAttribute="bottom" constant="25" id="b3v-fg-1YU"/>
+                            <constraint firstItem="hRs-PC-6OG" firstAttribute="leading" secondItem="scC-qy-ITP" secondAttribute="leading" constant="20" id="egf-3A-Tfc"/>
+                            <constraint firstItem="beG-nf-8jo" firstAttribute="top" secondItem="scC-qy-ITP" secondAttribute="top" constant="30" id="fBB-CA-JKN"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="descriptionText" destination="hRs-PC-6OG" id="GLp-sN-Fvl"/>
+                        <outlet property="postTitleLabel" destination="beG-nf-8jo" id="4WD-w4-89M"/>
+                        <outlet property="tipLabel" destination="u8Y-7X-EpK" id="EKw-XE-Tni"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Hqo-vW-cYG" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5266.666666666667" y="-1575"/>
+        </scene>
         <!--Invested-->
         <scene sceneID="nmo-Ha-pgc">
             <objects>
@@ -576,21 +632,21 @@
                                     <rect key="frame" x="0.0" y="0.0" width="374" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stock" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqR-vY-NTC">
-                                            <rect key="frame" x="20" y="11" width="44" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Stock" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rqR-vY-NTC">
+                                            <rect key="frame" x="20" y="11" width="48.5" height="21"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleTitle2"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTx-cX-Lqg">
-                                            <rect key="frame" x="330" y="11" width="24" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Tip" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UTx-cX-Lqg">
+                                            <rect key="frame" x="333.5" y="11" width="20.5" height="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
-                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ceo-E0-UhA">
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" text="Description" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ceo-E0-UhA">
                                             <rect key="frame" x="20" y="40" width="334" height="21"/>
-                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <fontDescription key="fontDescription" style="UICTFontTextStyleCallout"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
                                         </label>
@@ -610,6 +666,7 @@
                                     <outlet property="descriptionLabel" destination="Ceo-E0-UhA" id="FhB-80-NdY"/>
                                     <outlet property="stockLabel" destination="rqR-vY-NTC" id="UTp-pk-Ik3"/>
                                     <outlet property="tipLabel" destination="UTx-cX-Lqg" id="ybp-A4-mOR"/>
+                                    <segue destination="RzB-XI-5yS" kind="showDetail" identifier="postDetailSegue" id="MfA-OA-McE"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
